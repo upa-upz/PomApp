@@ -1,8 +1,10 @@
 package com.pomapp
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import androidx.core.content.ContextCompat
 import com.pomapp.databinding.ActivityMainBinding
 import com.pomapp.databinding.ActivityTimeBinding
 
@@ -34,6 +36,8 @@ class TimeActivity : AppCompatActivity() {
 
         currentTime = secuence[0]
 
+        var colorActive = ContextCompat.getColor(this,R.color.primary)
+
         //Iniciar Temporizador
         startTimer()
         isTimerRunning = true
@@ -63,8 +67,14 @@ class TimeActivity : AppCompatActivity() {
                 if(secuence.size == currentSecuence){
                     //Termino el Pomodoro
                 }else {
+                    when (currentSecuence){
+                        0 -> binding.ivImg1.setColorFilter(R.color.primary)
+                        1 -> binding.ivImg2.setColorFilter(R.color.primary)
+                        2 -> binding.ivImg3.setColorFilter(R.color.primary)
+                    }
                     currentSecuence++
                     currentTime = secuence[currentSecuence]
+
                     startTimer()
                 }
             }
